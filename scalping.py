@@ -87,23 +87,3 @@ cross_2 = cross(longband2[1], RSIndex2)
 trend2 := cross(RSIndex2, shortband2[1]) ? 1 : cross_2 ? -1 : nz(trend2[1], 1)
 FastAtrRsi2TL = trend2 == 1 ? longband2 : shortband2
 
-
-QQE2zlong = 0
-QQE2zlong := nz(QQE2zlong[1])
-QQE2zshort = 0
-QQE2zshort := nz(QQE2zshort[1])
-QQE2zlong := RSIndex2 >= 50 ? QQE2zlong + 1 : 0
-QQE2zshort := RSIndex2 < 50 ? QQE2zshort + 1 : 0
-
-hcolor2 = RsiMa2 - 50 > ThreshHold2 ? color.silver :
-   RsiMa2 - 50 < 0 - ThreshHold2 ? color.silver : na
-plot(FastAtrRsi2TL - 50, title='QQE Line', color=color.white, transp=0, linewidth=2)
-plot(RsiMa2 - 50, color=hcolor2, transp=50, title='Histo2', style=plot.style_columns)
-
-Greenbar1 = RsiMa2 - 50 > ThreshHold2
-Greenbar2 = RsiMa - 50 > upper
-
-Redbar1 = RsiMa2 - 50 < 0 - ThreshHold2
-Redbar2 = RsiMa - 50 < lower
-plot(Greenbar1 and Greenbar2 == 1 ? RsiMa2 - 50 : na, title="QQE Up", style=plot.style_columns, color=#00c3ff, transp=0)
-plot(Redbar1 and Redbar2 == 1 ? RsiMa2 - 50 : na, title="QQE Down", style=plot.style_columns, color=#ff0062, transp=0)
