@@ -32,7 +32,7 @@ shortband := RSIndex[1] < shortband[1] and RSIndex < shortband[1] ?
 cross_1 = cross(longband[1], RSIndex)
 trend := cross(RSIndex, shortband[1]) ? 1 : cross_1 ? -1 : nz(trend[1], 1)
 FastAtrRsiTL = trend == 1 ? longband : shortband
-////////////////////
+
 
 
 length = input(50, minval=1, title="Bollinger Length")
@@ -44,19 +44,17 @@ lower = basis - dev
 color_bar = RsiMa - 50 > upper ? #00c3ff : RsiMa - 50 < lower ? #ff0062 : color.gray
 
 
-//
-// Zero cross
+
 QQEzlong = 0
 QQEzlong := nz(QQEzlong[1])
 QQEzshort = 0
 QQEzshort := nz(QQEzshort[1])
 QQEzlong := RSIndex >= 50 ? QQEzlong + 1 : 0
 QQEzshort := RSIndex < 50 ? QQEzshort + 1 : 0
-//  
+
 
 Zero = hline(0, color=color.white, linestyle=hline.style_dotted, linewidth=1)
 
-////////////////////////////////////////////////////////////////
 
 RSI_Period2 = input(6, title='RSI Length')
 SF2 = input(5, title='RSI Smoothing')
@@ -64,9 +62,7 @@ QQE2 = input(1.61, title='Fast QQE2 Factor')
 ThreshHold2 = input(3, title="Thresh-hold")
 
 src2 = input(close, title="RSI Source")
-//
 
-//
 Wilders_Period2 = RSI_Period2 * 2 - 1
 
 
@@ -92,15 +88,12 @@ trend2 := cross(RSIndex2, shortband2[1]) ? 1 : cross_2 ? -1 : nz(trend2[1], 1)
 FastAtrRsi2TL = trend2 == 1 ? longband2 : shortband2
 
 
-//
-// Zero cross
 QQE2zlong = 0
 QQE2zlong := nz(QQE2zlong[1])
 QQE2zshort = 0
 QQE2zshort := nz(QQE2zshort[1])
 QQE2zlong := RSIndex2 >= 50 ? QQE2zlong + 1 : 0
 QQE2zshort := RSIndex2 < 50 ? QQE2zshort + 1 : 0
-//  
 
 hcolor2 = RsiMa2 - 50 > ThreshHold2 ? color.silver :
    RsiMa2 - 50 < 0 - ThreshHold2 ? color.silver : na
